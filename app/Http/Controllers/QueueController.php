@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Queue;
 use Illuminate\Http\Request;
+use App\Events\NewEvent;
 
 class QueueController extends Controller
 {
@@ -38,6 +39,7 @@ class QueueController extends Controller
         if ($nextQueue) {
             $nextQueue->update(['called_by' => Auth::id()]);
         }
+        event(new NewEvent('Queue Called'));
         return redirect()->route('queues');
     }
     public function queueForm()
@@ -49,6 +51,7 @@ class QueueController extends Controller
         $lastUnservedQueue = Queue::where('served', false)->max('number');
         $queueNumber = $lastUnservedQueue !== null ? $lastUnservedQueue + 1 : 1;
         Queue::create(['number' => $queueNumber, 'called_by' => null,]);
+        event(new NewEvent('Queue Added'));
         return redirect()->route('queueForm');
     }
 }

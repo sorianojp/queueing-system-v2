@@ -1,16 +1,14 @@
 <x-guest-layout>
         <div>
             <h1>Now Serving</h1>
-            @foreach ($registrars as $registrar)
-                @if ($registrar->currentQueue)
-                    <div>Registrar {{ $registrar->id }} Queue {{ $registrar->currentQueue->number }}</div>
-                @endif
-            @endforeach
+            <div id="now-serving">
+                @include('partials.liveservings')
+            </div>
         </div>
         <div>
             <h1>Queues</h1>
-                @foreach ($queues as $queue)
-                    <div>{{ $queue->number }}</div>
-                @endforeach
+            <div id="queues-list">
+                @include('partials.livequeues')
+            </div>
         </div>
 </x-guest-layout>

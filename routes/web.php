@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QueueController;
+use App\Http\Controllers\RealtimeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+Route::get('/livequeues', [RealtimeController::class, 'livequeues'])->name('livequeues');
+Route::get('/liveservings', [RealtimeController::class, 'liveservings'])->name('liveservings');
 
 require __DIR__.'/auth.php';
