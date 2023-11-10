@@ -11,6 +11,7 @@
                     @csrf
                     <x-primary-button type="submit">Done</x-primary-button>
                 </form>
+                <button id="repeat-last-message">Repeat Last Message</button>
             @else
                 <h1>No queue is currently being served.</h1>
                 <form method="POST" action="{{ route('callQueue') }}">

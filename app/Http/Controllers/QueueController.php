@@ -39,7 +39,7 @@ class QueueController extends Controller
         if ($nextQueue) {
             $nextQueue->update(['called_by' => Auth::id()]);
         }
-        event(new NewEvent('Queue Called'));
+        event(new NewEvent('Queue '.$nextQueue->number. 'Please Proceed to'. Auth::user()->name));
         return redirect()->route('queues');
     }
     public function queueForm()

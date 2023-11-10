@@ -6,8 +6,15 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
+
+const performTextToSpeech = (message) => {
+    const synth = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(message);
+    synth.speak(utterance);
+};
 window.Echo.channel('queues').listen('NewEvent', (e) => {
     console.log(e.queue);
+    performTextToSpeech(e.queue);
     axios.get('/livequeues')
             .then(response => {
                 const queuesList = document.getElementById('queues-list');
