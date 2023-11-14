@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('queues', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->unsignedInteger('number');
             $table->boolean('served')->default(false);
             $table->unsignedInteger('called_by')->nullable();
