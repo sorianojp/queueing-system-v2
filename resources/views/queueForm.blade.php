@@ -5,6 +5,12 @@
             <form method="POST" action="{{ route('getQueue') }}" class="flex space-x-2 my-6">
                 @csrf
                 <x-text-input name="name" type="text" required placeholder="Name" />
+                <x-select name="dept">
+                    <option>Registrar</option>
+                    <option>Cashier</option>
+                    <option>SAO</option>
+                    <option>ACAD</option>
+                </x-select>
                 <x-primary-button type="submit">Get Queue</x-primary-button>
             </form>
         </div>

@@ -1,26 +1,26 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Queues') }}
-        </h2>
-    </x-slot>
+<x-guest-layout>
+    <div class="grid grid-cols-3 uppercase">
+        <div class="col-span-2 h-screen p-5 text-center">
+            <h1 class="text-7xl font-black mb-10">Now Serving</h1>
             @if ($nowServing)
-                <h1 class="text-2xl font-black">Now Serving</h1>
-                <div>{{ $nowServing->number }}</div>
-                <form method="POST" action="{{ route('served', $nowServing->id )}}">
+                <div class="text-5xl font-bold">{{ $nowServing->number }}</div>
+                <form method="POST" action="{{ route('served', $nowServing->id) }}">
                     @csrf
-                    <x-primary-button type="submit">Done</x-primary-button>
+                    <x-secondary-button type="submit">Done</x-secondary-button>
                 </form>
-                <button id="repeat-last-message">Repeat Last Message</button>
             @else
                 <h1>No queue is currently being served.</h1>
                 <form method="POST" action="{{ route('callQueue') }}">
                     @csrf
-                    <x-primary-button type="submit">Call Next</x-primary-button>
+                    <x-secondary-button type="submit">Call Next</x-secondary-button>
                 </form>
             @endif
-                <h1>Queues</h1>
-                @foreach ($queues as $queue)
-                    <div>{{ $queue->number }}</div>
-                @endforeach
-</x-app-layout>
+        </div>
+        <div class="h-screen p-5 text-center">
+            <h1 class="text-7xl font-black mb-10">Queues</h1>
+            @foreach ($queues as $queue)
+                <span class="text-5xl font-bold">{{ $queue->number }}, </span>
+            @endforeach
+        </div>
+    </div>
+</x-guest-layout>

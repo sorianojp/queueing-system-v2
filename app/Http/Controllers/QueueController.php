@@ -50,7 +50,7 @@ class QueueController extends Controller
     {
         $lastUnservedQueue = Queue::where('served', false)->max('number');
         $queueNumber = $lastUnservedQueue !== null ? $lastUnservedQueue + 1 : 1;
-        Queue::create(['number' => $queueNumber, 'called_by' => null, 'name' => $request->name]);
+        Queue::create(['number' => $queueNumber, 'called_by' => null, 'name' => $request->name, 'dept' => $request->dept]);
         event(new NewEvent('Queue Added'));
         return redirect()->route('queueForm');
     }
