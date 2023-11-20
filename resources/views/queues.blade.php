@@ -1,4 +1,13 @@
 <x-guest-layout>
+    <form method="POST" action="{{ route('logout') }}" class="flex space-x-2 items-center">
+        @csrf
+        <div class="text-xl font-bold uppercase">Account: {{ Auth::user()->name }}</div>
+        <x-primary-button :href="route('logout')"
+            onclick="event.preventDefault();
+                            this.closest('form').submit();">
+            {{ __('Log Out') }}
+        </x-primary-button>
+    </form>
     <div class="grid grid-cols-3 uppercase">
         <div class="col-span-2 h-screen p-5 text-center">
             <h1 class="text-7xl font-black mb-10">Now Serving</h1>

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('dept');
-            $table->unsignedInteger('number');
+            $table->string('number');
             $table->boolean('served')->default(false);
             $table->unsignedInteger('called_by')->nullable();
             $table->timestamps();
