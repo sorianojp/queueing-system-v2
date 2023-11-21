@@ -2,11 +2,9 @@
     <form method="POST" action="{{ route('logout') }}" class="flex space-x-2 items-center">
         @csrf
         <div class="text-xl font-bold uppercase">Account: {{ Auth::user()->name }}</div>
-        <x-primary-button :href="route('logout')"
-            onclick="event.preventDefault();
-                            this.closest('form').submit();">
+        <button class="font-medium text-md text-red-600 hover:underline lowercase" type="submit">
             {{ __('Log Out') }}
-        </x-primary-button>
+        </button>
     </form>
     <div class="grid grid-cols-3 uppercase">
         <div class="col-span-2 h-screen p-5 text-center">

@@ -14,20 +14,20 @@ class RealtimeController extends Controller
     }
     public function liveservings()
     {
-        $registrars = User::all();
-        foreach ($registrars as $registrar) {
+        $users = User::all();
+        foreach ($users as $user) {
             $latestQueue = Queue::where('served', false)
-                ->where('called_by', $registrar->id)
+                ->where('called_by', $user->id)
                 ->orderBy('updated_at', 'desc') // Sort by updated_at in descending order
                 ->first(); // Fetch the latest queue
 
-            $registrar->currentQueue = $latestQueue;
+            $user->currentQueue = $latestQueue;
         }
 
-        // Sort the $registrars collection by currentQueue's updated_at timestamp
-        $registrars = $registrars->sortByDesc(function ($registrar) {
-            return optional($registrar->currentQueue)->updated_at;
+        // Sort the $users collection by currentQueue's updated_at timestamp
+        $users = $users->sortByDesc(function ($user) {
+            return optional($user->currentQueue)->updated_at;
         });
-        return view('partials.liveservings', compact('registrars'))->render();
+        return view('partials.liveservings', compact('users'))->render();
     }
 }

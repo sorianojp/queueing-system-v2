@@ -19,21 +19,21 @@ class QueueController extends Controller
     }
     public function live()
     {
-        $registrars = User::all();
-        foreach ($registrars as $registrar) {
+        $users = User::all();
+        foreach ($users as $user) {
             $latestQueue = Queue::where('served', false)
-                ->where('called_by', $registrar->id)
+                ->where('called_by', $user->id)
                 ->orderBy('updated_at', 'desc') // Sort by updated_at in descending order
                 ->first(); // Fetch the latest queue
 
-            $registrar->currentQueue = $latestQueue;
+            $user->currentQueue = $latestQueue;
         }
-        // Sort the $registrars collection by currentQueue's updated_at timestamp
-        $registrars = $registrars->sortByDesc(function ($registrar) {
-            return optional($registrar->currentQueue)->updated_at;
+        // Sort the $users collection by currentQueue's updated_at timestamp
+        $users = $users->sortByDesc(function ($user) {
+            return optional($user->currentQueue)->updated_at;
         });
         $queues = Queue::where('called_by', null)->orderBy('created_at')->get();
-        return view('live', compact('queues', 'registrars'));
+        return view('live', compact('queues', 'users'));
     }
     public function served(Queue $queue)
     {
@@ -47,7 +47,6 @@ class QueueController extends Controller
             $nextQueue->update(['called_by' => Auth::id()]);
             event(new NewEvent($nextQueue->name.' Queue '.$nextQueue->number. 'Please Proceed to '. Auth::user()->name));
         }
-
         return redirect()->route('queues');
     }
     public function queueForm()
@@ -56,9 +55,9 @@ class QueueController extends Controller
     }
     public function getQueue(Request $request)
     {
-        $tickerNumber = Str::random(3);
+        $tickerNumber = rand(0, 99);
         $dept = $request->dept;
-        $queueNumber =  $dept[0].'-'.$tickerNumber;
+        $queueNumber =  $dept[0].$tickerNumber;
         Queue::create([
             'number' => $queueNumber,
             'called_by' => null,
@@ -66,9 +65,10 @@ class QueueController extends Controller
             'dept' => $request->dept
         ]);
         event(new NewEvent('Queue Added'));
-        return view('print', [
+        $data = [
             'name' => $request->name,
-            'queueNumber' => $queueNumber
-        ]);
+            'number' => $queueNumber,
+        ];
+        return view('print')->with('data', $data);
     }
 }

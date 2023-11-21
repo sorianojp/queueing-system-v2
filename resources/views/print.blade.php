@@ -1,17 +1,13 @@
 <x-guest-layout>
     <div class="flex justify-center items-center h-screen">
         <div class="text-center uppercase">
-            <div class="mb-6" id="ticketContents" style="font-size: 14px; line-height: 1.5;">
-                <div class="text-2xl font-black">Queue No.</div>
-                <div class="text-xl font-black">{{ $queueNumber }}</div>
-                <div class="text-lg">{{ $name }}</div>
+            <div class="mb-6" id="ticketContents">
+                <div class="text-2xl font-black tracking-wide">QUEUE NO.</div>
+                <div class="text-xl font-black">{{ strtoupper($data['name']) }}-{{ strtoupper($data['number']) }}</div>
             </div>
-            <x-primary-button onclick="printTicket()">
-                Print Ticket
-            </x-primary-button>
-            <a href="{{ route('queueForm') }}">
+            <a href="{{ route('queueForm') }}" onclick="printTicket()">
                 <x-secondary-button>
-                    Back to Queue Form
+                    Print
                 </x-secondary-button>
             </a>
         </div>

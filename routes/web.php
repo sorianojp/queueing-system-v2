@@ -18,8 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [QueueController::class, 'queueForm'])->name('queueForm');
 Route::post('getQueue', [QueueController::class, 'getQueue'])->name('getQueue');
-Route::post('/callQueue', [QueueController::class, 'callQueue'])->name('callQueue');
-Route::post('/served/{queue}', [QueueController::class, 'served'])->name('served');
 Route::get('/live', [QueueController::class, 'live'])->name('live');
 
 Route::middleware('auth')->group(function () {
@@ -27,6 +25,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::post('/callQueue', [QueueController::class, 'callQueue'])->name('callQueue');
+    Route::post('/served/{queue}', [QueueController::class, 'served'])->name('served');
     Route::get('/queues', [QueueController::class, 'queues'])->name('queues');
 });
 
