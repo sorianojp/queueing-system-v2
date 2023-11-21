@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::post('/callQueue', [QueueController::class, 'callQueue'])->name('callQueue');
+    Route::post('/notify', [QueueController::class, 'notify'])->name('notify');
     Route::post('/served/{queue}', [QueueController::class, 'served'])->name('served');
     Route::get('/queues', [QueueController::class, 'queues'])->name('queues');
 });

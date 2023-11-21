@@ -45,8 +45,14 @@ class QueueController extends Controller
         $nextQueue = Queue::where('called_by', null)->where('dept', Auth::user()->dept)->orderBy('created_at')->first();
         if ($nextQueue) {
             $nextQueue->update(['called_by' => Auth::id()]);
-            event(new NewEvent($nextQueue->name.' Queue '.$nextQueue->number. 'Please Proceed to '. Auth::user()->name));
+            event(new NewEvent($nextQueue->name.'-'.$nextQueue->number. 'Please Proceed to '. Auth::user()->name));
         }
+        return redirect()->route('queues');
+    }
+    public function notify()
+    {
+        $nowServing = Queue::where('served', false)->where('called_by', Auth::id())->orderBy('updated_at')->get()->last();
+        event(new NewEvent($nowServing->name.'-'.$nowServing->number. 'Please Proceed to '. Auth::user()->name));
         return redirect()->route('queues');
     }
     public function queueForm()

@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-        <div class="w-full sm:max-w-xl mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-            <h1 class="uppercase text-2xl font-black mb-6">Get Your Queue Number</h1>
+        <div class="w-full sm:max-w-2xl mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <h1 class="uppercase text-5xl font-black mb-10">Get Your Queue Number</h1>
             <form method="POST" action="{{ route('getQueue') }}">
                 @csrf
                 <div class="grid grid-cols-2 gap-2">
