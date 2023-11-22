@@ -61,9 +61,23 @@ class QueueController extends Controller
     }
     public function getQueue(Request $request)
     {
-        $tickerNumber = rand(0, 99);
+
         $dept = $request->dept;
-        $queueNumber =  $dept[0].$tickerNumber;
+       // Check if there are any unserved queues
+       $lastUnservedQueue = Queue::where('served', false)->where('number', 'like', $dept[0] . '%')->max('number');
+
+       if ($lastUnservedQueue !== null) {
+           // Extract the numeric part of the last unserved queue number and increment it
+           $lastNumber = (int)substr($lastUnservedQueue, 1); // Extract the numeric part after the department prefix
+           $nextNumber = $lastNumber + 1;
+       } else {
+           // If all queues have been served, reset the queue number to '00'
+           $nextNumber = 0;
+       }
+
+       // Generate the new queue number by combining the department and the incremented number
+       $queueNumber = $dept[0] . str_pad($nextNumber, 2, '0', STR_PAD_LEFT);
+
         Queue::create([
             'number' => $queueNumber,
             'called_by' => null,
