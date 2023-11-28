@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QueueController;
 use App\Http\Controllers\RealtimeController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/notify', [QueueController::class, 'notify'])->name('notify');
     Route::post('/served/{queue}', [QueueController::class, 'served'])->name('served');
     Route::get('/queues', [QueueController::class, 'queues'])->name('queues');
+
+    Route::get('/reports', [ReportController::class, 'reports'])->name('reports');
 });
 
 
