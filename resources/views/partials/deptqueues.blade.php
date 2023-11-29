@@ -1,3 +1,3 @@
 @foreach ($queues as $queue)
-    <div class="queue-item text-3xl font-bold">{{ $queue->name }}-{{ $queue->number }}</div>
+    <div class="deptqueue-item text-3xl font-bold">{{ $queue->name }}-{{ $queue->number }}</div>
 @endforeach

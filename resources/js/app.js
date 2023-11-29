@@ -31,4 +31,12 @@ window.Echo.channel('queues').listen('NewEvent', (e) => {
         .catch(error => {
             console.error(error);
         });
+    axios.get('/deptqueues')
+        .then(response => {
+            const deptqueuesList = document.getElementById('deptqueues-list');
+            deptqueuesList.innerHTML = response.data;
+        })
+        .catch(error => {
+            console.error(error);
+        });
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Queue;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class RealtimeController extends Controller

@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/reports', [ReportController::class, 'reports'])->name('reports');
 });
 
-
+Route::get('/deptqueues', [RealtimeController::class, 'deptqueues'])->name('deptqueues');
 Route::get('/livequeues', [RealtimeController::class, 'livequeues'])->name('livequeues');
 Route::get('/liveservings', [RealtimeController::class, 'liveservings'])->name('liveservings');
 

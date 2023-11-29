@@ -33,7 +33,7 @@
         </div>
         <div class="h-screen p-5">
             <h1 class="text-7xl font-black mb-10">Queues</h1>
-            <div id="queues-list">
+            <div id="deptqueues-list">
                 @include('partials.deptqueues')
             </div>
         </div>
