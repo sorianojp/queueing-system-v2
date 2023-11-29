@@ -33,9 +33,9 @@
         </div>
         <div class="h-screen p-5">
             <h1 class="text-7xl font-black mb-10">Queues</h1>
-            @foreach ($queues as $queue)
-                <span class="text-5xl font-bold text-red-900">{{ $queue->number }}, </span>
-            @endforeach
+            <div id="queues-list">
+                @include('partials.deptqueues')
+            </div>
         </div>
     </div>
 </x-guest-layout>
