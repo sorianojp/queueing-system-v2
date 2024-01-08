@@ -55,5 +55,36 @@
                 </div>
             </form>
         </div>
+        <div class="w-full mt-6 px-6 py-4 bg-white shadow-md sm:rounded-lg">
+        <h1 class="uppercase font-black text-xl mb-2">Accounts</h1>
+        <h1 class="font-black text-lg">Password: universidad</h1>
+        <h3 class="font-black text-md">Note: Email number = window number.</h3>
+        <h3 class="font-black text-md">Example: registrar1@gmail.com is for Registrar Window 1</h3>
+        <div class="grid grid-cols-4 gap-2">
+            <div>
+                registrar1@gmail.com<br>
+                registrar2@gmail.com<br>
+                registrar3@gmail.com<br>
+                registrar4@gmail.com<br>
+                registrar5@gmail.com<br>
+                registrar6@gmail.com<br>
+                registrar7@gmail.com<br>
+            </div>
+            <div>
+                cashier1@gmail.com<br>
+                cashier2@gmail.com<br>
+                cashier3@gmail.com<br>
+                cashier4@gmail.com<br>
+                cashier5@gmail.com<br>
+            </div>
+            <div>
+                acad1@gmail.com<br>
+                acad2@gmail.com
+            </div>
+            <div>
+                sao1@gmail.com
+            </div>
+        </div>
+        </div>
     </div>
 </x-guest-layout>
