@@ -21,6 +21,9 @@ Route::get('/', [QueueController::class, 'queueForm'])->name('queueForm');
 Route::post('getQueue', [QueueController::class, 'getQueue'])->name('getQueue');
 Route::get('/live', [QueueController::class, 'live'])->name('live');
 
+Route::get('/reset', [QueueController::class, 'reset'])->name('reset');
+Route::delete('/destroyunserve/{queue}', [QueueController::class, 'destroyunserve'])->name('destroyunserve');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

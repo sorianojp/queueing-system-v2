@@ -12,7 +12,7 @@
         <div class="col-span-2 h-screen p-5 text-center">
             <h1 class="text-7xl font-black mb-10">Now Serving</h1>
             @if ($nowServing)
-                <div class="text-7xl font-bold text-blue-900">{{ $nowServing->number }}</div>
+                <div class="text-7xl font-bold text-blue-900">{{ $nowServing->name }} {{ $nowServing->number }}</div>
                 <div class="flex justify-center space-x-2 my-4">
                     <form method="POST" action="{{ route('served', $nowServing->id) }}">
                         @csrf
