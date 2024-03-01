@@ -92,6 +92,7 @@ class QueueController extends Controller
         $data = [
             'name' => $request->name,
             'number' => $queueNumber,
+            'created_at' => $today,
         ];
         return view('print')->with('data', $data);
     }

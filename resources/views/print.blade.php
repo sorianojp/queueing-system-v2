@@ -5,6 +5,7 @@
                 <div class="text-2xl font-black tracking-wide">QUEUE NO.</div>
                 <div class="text-md font-black">{{ strtoupper($data['name']) }}</div>
                 <div class="text-2xl font-black">{{ strtoupper($data['number']) }}</div>
+                <div class="text-2xl font-black">{{ strtoupper($data['created_at']) }}</div>
             </div>
             <a href="{{ route('queueForm') }}" onclick="printTicket()">
                 <x-secondary-button>
