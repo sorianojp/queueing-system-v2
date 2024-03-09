@@ -21,9 +21,19 @@
                     </div>
                 </div>
                 <div class="flex justify-end mt-2">
-                    <x-primary-button type="submit">Get Queue</x-primary-button>
+                    <x-primary-button id="submitBtn" type="submit">Get Queue</x-primary-button>
                 </div>
             </form>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.querySelector('form[method="POST"]');
+            var submitBtn = document.getElementById('submitBtn');
+            form.addEventListener('submit', function() {
+                submitBtn.disabled = true;
+                submitBtn.innerText = 'Processing...';
+            });
+        });
+    </script>
 </x-guest-layout>
