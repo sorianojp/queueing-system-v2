@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Events\NewEvent;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
-
+use App\Models\Department;
 
 class QueueController extends Controller
 {
@@ -61,7 +61,8 @@ class QueueController extends Controller
     }
     public function queueForm()
     {
-        return view('queueForm');
+        $departments = Department::all();
+        return view('queueForm', compact('departments'));
     }
     public function getQueue(Request $request)
     {

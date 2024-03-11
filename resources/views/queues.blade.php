@@ -1,7 +1,10 @@
 <x-guest-layout>
     <div class="flex justify-center">
-        <form method="POST" action="{{ route('logout') }}" class="flex space-x-2 items-center">
+        <form method="POST" action="{{ route('logout') }}" class="flex space-x-2 items-center mx-2">
             @csrf
+            <a href="{{ route('departments.index') }}"
+                class="font-medium text-md text-red-600 hover:underline lowercase">Cut
+                off</a>
             <div class="text-xl font-bold uppercase">Account: {{ Auth::user()->name }}</div>
             <button class="font-medium text-md text-red-600 hover:underline lowercase" type="submit">
                 {{ __('Log Out') }}

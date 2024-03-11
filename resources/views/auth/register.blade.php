@@ -18,10 +18,11 @@
                     <x-input-label for="dept" :value="__('Dept')" />
                     <x-select id="dept" class="block mt-1 w-full" name="dept" :value="old('dept')" required
                         autofocus autocomplete="dept">
-                        <option>Registrar</option>
-                        <option>Cashier</option>
-                        <option>SAO</option>
-                        <option>ACAD</option>
+                        @foreach ($departments as $department)
+                            <option>
+                                {{ $department->name }}
+                            </option>
+                        @endforeach
                     </x-select>
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>

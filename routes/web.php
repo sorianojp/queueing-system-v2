@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QueueController;
 use App\Http\Controllers\RealtimeController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\DepartmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('departments', DepartmentController::class);
+Route::delete('/deactivate/{department}',  [DepartmentController::class, 'deactivate'])->name('deactivate');
+Route::get('/activate/{department}',  [DepartmentController::class, 'activate'])->name('activate');
 Route::get('/', [QueueController::class, 'queueForm'])->name('queueForm');
 Route::post('getQueue', [QueueController::class, 'getQueue'])->name('getQueue');
 Route::get('/live', [QueueController::class, 'live'])->name('live');

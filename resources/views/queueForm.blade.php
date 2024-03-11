@@ -6,16 +6,17 @@
                 @csrf
                 <div class="grid grid-cols-2 gap-2">
                     <div>
-                        <x-input-label for="dept" :value="__('Department')" />
+                        <x-input-label for="dept" :value="__('Select Department')" />
                         <x-select id="dept" name="dept" class="block w-full">
-                            <option>Registrar</option>
-                            <option>Cashier</option>
-                            <option>SAO</option>
-                            <option>ACAD</option>
+                            @foreach ($departments as $department)
+                                <option {{ $department->status == 0 ? 'disabled' : '' }}>
+                                    {{ $department->name }}{{ $department->status == 0 ? ' (Cut Off! Contact the Department)' : '' }}
+                                </option>
+                            @endforeach
                         </x-select>
                     </div>
                     <div>
-                        <x-input-label for="name" :value="__('Name')" />
+                        <x-input-label for="name" :value="__('Enter Your Name')" />
                         <x-text-input id="name" name="name" type="text" required placeholder="Name"
                             class="block w-full" />
                     </div>
