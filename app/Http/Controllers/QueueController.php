@@ -14,14 +14,14 @@ class QueueController extends Controller
 {
     public function queues()
     {
-        $today = Carbon::now();
+        $today = Carbon::now('Asia/Manila');;
         $nowServing = Queue::where('served', false)->where('called_by', Auth::id())->orderBy('updated_at')->get()->last();
         $queues = Queue::whereDate('created_at', $today)->where('called_by', null)->where('dept', Auth::user()->dept)->orderBy('created_at')->get();
         return view('queues', compact('queues', 'nowServing'));
     }
     public function live()
     {
-        $today = Carbon::now();
+        $today = Carbon::now('Asia/Manila');;
         $users = User::all();
         foreach ($users as $user) {
             $latestQueue = Queue::where('served', false)
@@ -45,7 +45,7 @@ class QueueController extends Controller
     }
     public function callQueue()
     {
-        $today = Carbon::now();
+        $today = Carbon::now('Asia/Manila');;
         $nextQueue = Queue::whereDate('created_at', $today)->where('called_by', null)->where('dept', Auth::user()->dept)->orderBy('created_at')->first();
         if ($nextQueue) {
             $nextQueue->update(['called_by' => Auth::id()]);
@@ -66,7 +66,7 @@ class QueueController extends Controller
     }
     public function getQueue(Request $request)
     {
-        $today = Carbon::now();
+        $today = Carbon::now('Asia/Manila');
         $dept = $request->dept;
        // Check if there are any unserved queues
        $lastUnservedQueue = Queue::whereDate('created_at', $today)->where('served', false)->where('number', 'like', $dept[0] . '%')->max('number');

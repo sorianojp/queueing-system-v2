@@ -11,13 +11,13 @@ class RealtimeController extends Controller
 {
     public function deptqueues()
     {
-        $today = Carbon::now();
+        $today = Carbon::now('Asia/Manila');
         $queues = Queue::whereDate('created_at', $today)->where('called_by', null)->where('dept', Auth::user()->dept)->orderBy('created_at')->get();
         return view('partials.deptqueues', compact('queues'))->render();
     }
     public function livequeues()
     {
-        $today = Carbon::now();
+        $today = Carbon::now('Asia/Manila');
         $queues = Queue::whereDate('created_at', $today)->where('called_by', null)->orderBy('created_at')->get();
         return view('partials.livequeues', compact('queues'))->render();
     }
