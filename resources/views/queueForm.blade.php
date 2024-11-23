@@ -18,7 +18,7 @@
                     <div>
                         <x-input-label for="name" :value="__('Enter Your Name')" />
                         <x-text-input id="name" name="name" type="text" required placeholder="Name"
-                            class="block w-full" />
+                            class="block w-full" autofocus/>
                     </div>
                 </div>
                 <div class="flex justify-end mt-2">
