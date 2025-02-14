@@ -1,23 +1,38 @@
 <x-guest-layout>
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-        @if ($departments->where('status', 0)->isNotEmpty())
-            <div class="text-lg">
-                <p>
-                    Queue full for
-                    <span class="text-red-800 font-semibold">
-                        @foreach ($departments->where('status', 0) as $department)
-                            {{ $department->name }}@if (!$loop->last)
-                                ,
-                            @endif
-                        @endforeach
-                    </span>
-                </p>
-                <p>
-                    Kindly proceed to Window <span class="text-red-800 font-semibold">A1</span> or <span
-                        class="text-red-800 font-semibold">A2</span> for further assistance. Thank you!
-                </p>
+        <div class="sm:max-w-2xl space-y-1 text-md">
+            <div>
+                <span>
+                    For Transfer Credentials/OTR submission, proceed directly to Window R5.
+                    <span class="text-blue-900 font-semibold">No queue required.</span>
+                </span>
             </div>
-        @endif
+            @if ($departments->where('status', 0)->isNotEmpty())
+                <div>
+                    <p>
+                        Queue full for
+                        <span class="text-red-800 font-semibold">
+                            @foreach ($departments->where('status', 0) as $department)
+                                {{ $department->name }}@if (!$loop->last)
+                                    ,
+                                @endif
+                            @endforeach
+                        </span>
+                    </p>
+                    {{-- Display the registrar-specific message only if Registrar is in the list --}}
+                    @if (
+                        $departments->where('status', 0)->contains(function ($department) {
+                            return $department->name === 'Registrar';
+                        }))
+                        <p>
+                            For <span class="text-red-800 font-semibold">Registrar</span> Kindly proceed to Window
+                            <span class="text-red-800 font-semibold">A1</span>
+                            or <span class="text-red-800 font-semibold">A2</span> for further assistance. Thank you!
+                        </p>
+                    @endif
+                </div>
+            @endif
+        </div>
         <div class="w-full sm:max-w-2xl mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             <h1 class="uppercase text-5xl font-black mb-10">Get Your Queue Number</h1>
             <form method="POST" action="{{ route('getQueue') }}">
