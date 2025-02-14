@@ -1,9 +1,9 @@
 <x-guest-layout>
     <!-- Outer container with two rows: 20% and 80% -->
-    <div class="h-screen grid grid-rows-[20%_80%]">
+    <div class="h-screen grid grid-rows-[25%_75%]">
         <!-- Note Section (20% height) -->
         <div class="font-extrabold">
-            <h1 class="text-3xl font-black sticky top-0 text-white z-10 p-2 bg-blue-950">
+            <h1 class="text-4xl font-black sticky top-0 text-white z-10 p-2 bg-blue-950">
                 Note
             </h1>
             <div class="space-y-1 text-2xl">
