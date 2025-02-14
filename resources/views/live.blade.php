@@ -1,6 +1,6 @@
 <x-guest-layout>
     <!-- Outer container with two rows: 20% and 80% -->
-    <div class="h-screen grid grid-rows-[20%_80%]">
+    <div class="h-screen grid grid-rows-[25%_75%]">
         <!-- Note Section (20% height) -->
         <div class="uppercase font-extrabold">
             <h1 class="text-3xl font-black sticky top-0 text-white z-10 p-2 bg-blue-950">
