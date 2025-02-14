@@ -1,15 +1,16 @@
 <x-guest-layout>
     <!-- Outer container with two rows: 20% and 80% -->
-    <div class="h-screen grid grid-rows-[25%_75%]">
+    <div class="h-screen grid grid-rows-[20%_80%]">
         <!-- Note Section (20% height) -->
-        <div class="uppercase font-extrabold">
+        <div class="font-extrabold">
             <h1 class="text-3xl font-black sticky top-0 text-white z-10 p-2 bg-blue-950">
                 Note
             </h1>
             <div class="space-y-1 text-2xl">
                 <div>
                     <span>
-                        For Transfer Credentials/OTR submission, proceed directly to Window R5.
+                        For <span class="text-blue-900 font-semibold">Transfer Credentials/OTR submission</span>, proceed
+                        directly to <span class="text-green-900 font-semibold">Window R5.</span>
                         <span class="text-blue-900 font-semibold">No queue required.</span>
                     </span>
                 </div>
