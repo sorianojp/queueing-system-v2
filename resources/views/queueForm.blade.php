@@ -1,5 +1,23 @@
 <x-guest-layout>
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+        @if ($departments->where('status', 0)->isNotEmpty())
+            <div class="text-lg">
+                <p>
+                    Queue full for
+                    <span class="text-red-800 font-semibold">
+                        @foreach ($departments->where('status', 0) as $department)
+                            {{ $department->name }}@if (!$loop->last)
+                                ,
+                            @endif
+                        @endforeach
+                    </span>
+                </p>
+                <p>
+                    Kindly proceed to Window <span class="text-red-800 font-semibold">A1</span> or <span
+                        class="text-red-800 font-semibold">A2</span> for further assistance. Thank you!
+                </p>
+            </div>
+        @endif
         <div class="w-full sm:max-w-2xl mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             <h1 class="uppercase text-5xl font-black mb-10">Get Your Queue Number</h1>
             <form method="POST" action="{{ route('getQueue') }}">
@@ -18,7 +36,7 @@
                     <div>
                         <x-input-label for="name" :value="__('Enter Your Name')" />
                         <x-text-input id="name" name="name" type="text" required placeholder="Name"
-                            class="block w-full" autofocus/>
+                            class="block w-full" autofocus />
                     </div>
                 </div>
                 <div class="flex justify-end mt-2">

@@ -23,6 +23,7 @@ class QueueController extends Controller
     {
         $today = Carbon::now('Asia/Manila');;
         $users = User::all();
+        $departments = Department::all();
         foreach ($users as $user) {
             $latestQueue = Queue::where('served', false)
                 ->where('called_by', $user->id)
@@ -36,7 +37,7 @@ class QueueController extends Controller
             return optional($user->currentQueue)->updated_at;
         });
         $queues = Queue::whereDate('created_at', $today)->where('called_by', null)->orderBy('created_at')->get();
-        return view('live', compact('queues', 'users'));
+        return view('live', compact('queues', 'users', 'departments'));
     }
     public function served(Queue $queue)
     {

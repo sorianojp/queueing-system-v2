@@ -1,3 +1,3 @@
 @foreach ($queues as $queue)
-    <div class="queue-item text-lg font-bold">{{ $queue->name }} {{ $queue->number }}</div>
+    <span class="queue-item text-lg font-bold mr-4">{{ $queue->name }} {{ $queue->number }}, </span>
 @endforeach
